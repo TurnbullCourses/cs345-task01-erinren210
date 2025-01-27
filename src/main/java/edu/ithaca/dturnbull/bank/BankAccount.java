@@ -40,14 +40,14 @@ public class BankAccount {
 
 
     public static boolean isEmailValid(String email){
-        String lowEmail = email.toLowerCase();
-
         // email can not be empty or not contain @
-        if (email == null || email.isEmpty() || email.indexOf('@') == -1) {
+        if (email == null || email.isEmpty()) {
             return false;
         }
 
-        for (int i = 0; i <= lowEmail.length(); i++){
+        String lowEmail = email.toLowerCase();
+
+        for (int i = 0; i < lowEmail.length(); i++){
             char c = lowEmail.charAt(i);
             // check email contains a-z and/or 0-9
             if ((c >= 'a' && c <= 'z') || (c >= 0 && c <= 9)){
