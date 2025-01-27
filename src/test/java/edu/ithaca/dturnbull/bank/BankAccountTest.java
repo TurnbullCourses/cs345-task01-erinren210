@@ -19,7 +19,17 @@ class BankAccountTest {
         bankAccount.withdraw(100);
 
         assertEquals(100, bankAccount.getBalance(), 0.001);
+
+        //insufficient funds exceptions
         assertThrows(InsufficientFundsException.class, () -> bankAccount.withdraw(300));
+        bankAccount.withdraw(100);
+        assertEquals(0, bankAccount.getBalance(), 0.001);
+        assertThrows(InsufficientFundsException.class, () -> bankAccount.withdraw(1));
+
+        //invalid amount exception
+        assertThrows(IllegalArgumentException.class, () -> bankAccount.withdraw(-1));
+        BankAccount bankAccount2 = new BankAccount("c@d.com", 200);
+        assertThrows(IllegalArgumentException.class, () -> bankAccount2.withdraw(-1));
     }
 
     @Test
