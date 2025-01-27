@@ -40,17 +40,20 @@ public class BankAccount {
 
 
     public static boolean isEmailValid(String email){
-        // email can not be empty or not contain @
+        // email can not be empty
         if (email == null || email.isEmpty()) {
             return false;
         }
 
         String lowEmail = email.toLowerCase();
 
+        // flag to track if one "@" exists
+        boolean atFound = false;
+
         for (int i = 0; i < lowEmail.length(); i++){
             char c = lowEmail.charAt(i);
             // check email contains a-z and/or 0-9
-            if ((c >= 'a' && c <= 'z') || (c >= 0 && c <= 9)){
+            if ((c >= 'a' && c <= 'z') || (c >= '0' && c <= '9')){
                 continue;
             } 
 
@@ -65,18 +68,24 @@ public class BankAccount {
                 if (i > 0 && (lowEmail.charAt(i - 1) == '.' || lowEmail.charAt(i - 1) == '-' || lowEmail.charAt(i - 1) == '_')){
                     return false;
                 }
-
+            // note: skips this line if no "@", need to put tracker somewhere it will run through
             } else if (c == '@') {
                 // can only contain one "@", cannot be at beginning or end
-                if (i == 0 || i == lowEmail.length() - 1 || lowEmail.indexOf('@') != lowEmail.lastIndexOf('@')) {
+                if (atFound || i == 0 || i == lowEmail.length() - 1 || lowEmail.indexOf('@') != lowEmail.lastIndexOf('@')) {
                     return false;
+                } else {
+                    atFound = true;
                 }
 
             } else {
-                // everything else is false
-                return false;
+                if (!atFound) {
+                    return false;
+                }
+                // everything else relating to special characters is true
+                return true;
             }
         } 
+
         // everything else is valid
         return true;
     }
