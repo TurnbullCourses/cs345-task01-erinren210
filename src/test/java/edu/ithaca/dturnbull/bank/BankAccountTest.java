@@ -24,21 +24,19 @@ class BankAccountTest {
 
     @Test
     void isEmailValidTest(){
-        assertTrue(BankAccount.isEmailValid( "a@b.com"));   // valid email address
-        assertFalse( BankAccount.isEmailValid(""));         // empty string
+        assertTrue(BankAccount.isEmailValid( "a@b.com"));   // valid email address ; valid
+        assertFalse(BankAccount.isEmailValid(""));         // empty string         ; invalid
 
-        assertFalse(BankAccount.isEmailValid("@gmail.com")); //missing prefix
-        assertFalse(BankAccount.isEmailValid("erinren210@")); //missing domain
-        assertFalse(BankAccount.isEmailValid("erinren210gmail.com")); //missing @
+        assertFalse(BankAccount.isEmailValid("@gmail.com")); //missing prefix      ; invalid
+        assertFalse(BankAccount.isEmailValid("erinren210@")); //missing domain     ; invalid
+        assertFalse(BankAccount.isEmailValid("erinren210gmail.com")); //missing @  ; invalid
 
-        assertFalse(BankAccount.isEmailValid("erinren..210@gmail.com")); //double dots
-        assertFalse(BankAccount.isEmailValid("erinren$210@gmail.com")); //invalid character
-        assertFalse(BankAccount.isEmailValid(".erinren210@gmail.com")); //starts with dot
-        assertFalse(BankAccount.isEmailValid("erinren210.@gmail.com")); //dot before @
+        assertFalse(BankAccount.isEmailValid("erinren..210@gmail.com")); //double dots       ; invalid, checks for partition of double special characters
+        assertFalse(BankAccount.isEmailValid("erinren$210@gmail.com")); //invalid character  ; invalid, checks for partition of non-allowed special character
+        assertFalse(BankAccount.isEmailValid(".erinren210@gmail.com")); //starts with dot    ; invalid, checks for partition of starting with special character
+        assertFalse(BankAccount.isEmailValid("erinren210.@gmail.com")); //dot before @       ; invalid, checks for partition of special character right before the '@'
 
-        //assertFalse(BankAccount.isEmailValid("erinren210@gmail.c")); //last part of domain too short
-
-        
+        //assertFalse(BankAccount.isEmailValid("erinren210@gmail.c")); //last part of domain too short  ; invalid, border case, checks for partition of domain being at least two characters       
     }
 
     @Test
