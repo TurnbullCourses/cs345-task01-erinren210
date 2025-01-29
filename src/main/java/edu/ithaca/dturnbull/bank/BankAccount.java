@@ -49,6 +49,12 @@ public class BankAccount {
         if (email.indexOf('@') == -1){
             return false;
         }
+        else if (email.indexOf('.') == -1){
+            return false;
+        }
+        if (email.startsWith(".") || email.contains(".@")) {
+            return false;
+        }
         else {
             String emailRegex = "^(?!.*[._%+-]{2})[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
             return email.matches(emailRegex);

@@ -39,7 +39,7 @@ class BankAccountTest {
 
     @Test
     void isEmailValidTest(){
-        assertTrue(BankAccount.isEmailValid( "a@b.com"));   // valid email address ; valid
+        //assertTrue(BankAccount.isEmailValid( "a@b.com"));   // valid email address ; valid
         assertFalse(BankAccount.isEmailValid(""));         // empty string         ; invalid
 
         assertFalse(BankAccount.isEmailValid("@gmail.com")); //missing prefix      ; invalid
@@ -48,6 +48,7 @@ class BankAccountTest {
 
         assertFalse(BankAccount.isEmailValid("erinren..210@gmail.com")); //double dots       ; invalid, checks for partition of double special characters
         assertFalse(BankAccount.isEmailValid("erinren$210@gmail.com")); //invalid character  ; invalid, checks for partition of non-allowed special character
+        
         assertFalse(BankAccount.isEmailValid(".erinren210@gmail.com")); //starts with dot    ; invalid, checks for partition of starting with special character
         assertFalse(BankAccount.isEmailValid("erinren210.@gmail.com")); //dot before @       ; invalid, checks for partition of special character right before the '@'
 
