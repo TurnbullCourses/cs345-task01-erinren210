@@ -10,6 +10,9 @@ public class BankAccount {
      */
     public BankAccount(String email, double startingBalance){
         if (isEmailValid(email)){
+            if (isAmountValid(startingBalance) == false){
+                throw new IllegalArgumentException("Starting balance is invalid");
+            }
             this.email = email;
             this.balance = startingBalance;
         }

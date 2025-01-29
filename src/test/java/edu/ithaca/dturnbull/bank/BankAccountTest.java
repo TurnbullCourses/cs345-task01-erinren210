@@ -64,8 +64,9 @@ class BankAccountTest {
         assertEquals(200, bankAccount.getBalance(), 0.001);
         //check for exception thrown correctly
         assertThrows(IllegalArgumentException.class, ()-> new BankAccount("", 100));
-        assertThrows(IllegalArgumentException.class, ()-> new BankAccount("a@b.com", 100.01));
-    }
+        assertThrows(IllegalArgumentException.class, ()-> new BankAccount("a@b.com", 100.001));
+        assertThrows(IllegalArgumentException.class, ()-> new BankAccount("a@b.com", -100));
+    }   
 
     @Test
     void isAmountValidTest(){
