@@ -81,4 +81,13 @@ public class BankAccount {
             }
         }
     }
+
+    public void deposit(double amount){
+        if (isAmountValid(amount)){
+            balance += amount;
+        }
+        else {
+            throw new IllegalArgumentException("Amount is invalid");
+        }
+    }
 }
