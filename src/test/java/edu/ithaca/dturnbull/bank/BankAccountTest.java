@@ -72,10 +72,9 @@ class BankAccountTest {
     void isAmountValidTest(){
         assertTrue(BankAccount.isAmountValid(100)); //valid amount
         assertTrue(BankAccount.isAmountValid(100.01)); //valid amount with two decimal places
+        assertTrue(BankAccount.isAmountValid(0)); //zero
 
         assertFalse(BankAccount.isAmountValid(-100)); //negative amount
-
-        assertFalse(BankAccount.isAmountValid(0)); //zero
 
         assertFalse(BankAccount.isAmountValid(100.001)); //more than two decimal places
     }
