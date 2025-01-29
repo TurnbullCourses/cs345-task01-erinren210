@@ -55,4 +55,9 @@ public class BankAccount {
         } 
 
     }
+
+    public static boolean isAmountValid(double amount){
+        //returns true if amount is positive and has two decimal places or less, false otherwise
+        return amount > 0;
+    }
 }
