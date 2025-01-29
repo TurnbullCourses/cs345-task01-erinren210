@@ -79,4 +79,15 @@ class BankAccountTest {
 
         assertFalse(BankAccount.isAmountValid(100.001)); //more than two decimal places
     }
+
+    @Test
+    public void depositTest(){
+        BankAccount bankAccount = new BankAccount("a@b.com", 200);
+        //valid deposit, asserts correct balance
+        bankAccount.deposit(100);
+        assertEquals(300, bankAccount.getBalance(), 0.001);
+
+        assertThrows(IllegalArgumentException.class, () -> bankAccount.deposit(-1)); //invalid deposit, asserts exception thrown
+        assertThrows(IllegalArgumentException.class, () -> bankAccount.deposit(100.001)); //invalid deposit, asserts exception thrown
+    }
 }
