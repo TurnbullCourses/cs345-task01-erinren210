@@ -90,4 +90,21 @@ class BankAccountTest {
         assertThrows(IllegalArgumentException.class, () -> bankAccount.deposit(-1)); //invalid deposit, asserts exception thrown
         assertThrows(IllegalArgumentException.class, () -> bankAccount.deposit(100.001)); //invalid deposit, asserts exception thrown
     }
+
+    @Test
+    public void transferTest() throws InsufficientFundsException{
+        BankAccount bankAccount = new BankAccount("a@b.com", 200);
+        BankAccount bankAccount2 = new BankAccount("c@d.com", 300);
+
+        //valid transfer, asserts correct balance
+        bankAccount.transfer(bankAccount2, 100);
+        assertEquals(100, bankAccount.getBalance(), 0.001);
+        assertEquals(400, bankAccount2.getBalance(), 0.001);
+
+        //insufficient funds exception, asserts exception thrown
+        assertThrows(InsufficientFundsException.class, () -> bankAccount.transfer(bankAccount2, 200));
+
+        //invalid amount exception, asserts exception thrown
+        assertThrows(IllegalArgumentException.class, () -> bankAccount.transfer(bankAccount2, -1));
+    }
 }
