@@ -86,6 +86,10 @@ class BankAccountTest {
         bankAccount.deposit(100);
         assertEquals(300, bankAccount.getBalance(), 0.001);
 
+        //deposit 0
+        bankAccount.deposit(0);
+        assertEquals(300, bankAccount.getBalance(), 0.001);
+
         assertThrows(IllegalArgumentException.class, () -> bankAccount.deposit(-1)); //invalid deposit, asserts exception thrown
         assertThrows(IllegalArgumentException.class, () -> bankAccount.deposit(100.001)); //invalid deposit, asserts exception thrown
     }
@@ -97,6 +101,11 @@ class BankAccountTest {
 
         //valid transfer, asserts correct balance
         bankAccount.transfer(bankAccount2, 100);
+        assertEquals(100, bankAccount.getBalance(), 0.001);
+        assertEquals(400, bankAccount2.getBalance(), 0.001);
+
+        //transfers 0
+        bankAccount.transfer(bankAccount2, 0);
         assertEquals(100, bankAccount.getBalance(), 0.001);
         assertEquals(400, bankAccount2.getBalance(), 0.001);
 
