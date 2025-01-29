@@ -64,6 +64,18 @@ public class BankAccount {
 
     public static boolean isAmountValid(double amount){
         //returns true if amount is positive and has two decimal places or less, false otherwise
-        return amount > 0;
+        if (amount <= 0){
+            return false;
+        }
+        else {
+            String amountString = Double.toString(amount);
+            int decimalIndex = amountString.indexOf('.');
+            if (decimalIndex == -1){
+                return true;
+            }
+            else {
+                return amountString.length() - decimalIndex <= 3;
+            }
+        }
     }
 }
